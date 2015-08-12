@@ -1,1 +1,1 @@
-# funicular [![Build Status](https://travis-ci.org/nuevolia/funicular.svg)](https://travis-ci.org/nuevolia/funicular)
+# funicular [![Build Status](https://travis-ci.org/nuevolia/funicular.svg)](https://travis-ci.org/nuevolia/funicular) [![Documentation Status](https://readthedocs.org/projects/funicular/badge/?version=latest)](https://readthedocs.org/projects/funicular/?badge=latest)
