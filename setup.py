@@ -24,7 +24,7 @@ setuptools.setup(
     setup_requires=['nose>=1.0', 'versioneer>=0.15'],
     package_dir={'': 'src'},
     packages=setuptools.find_packages('src'),
-    install_requires=['telnetclient'],
+    install_requires=['telnetlib3'],
     url='',
     license='MIT',
     author='Fabien ZARIFIAN',
