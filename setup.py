@@ -10,7 +10,7 @@ except Exception:
     sys.exit(1)
 
 extra = {}
-setup_packages = ['nose>=1.0', 'versioneer>=0.15', 'sphinx', 'sphinx-autobuild']
+setup_packages = ['nose>=1.0', 'versioneer>=0.15']
 install_packages = []
 
 # with python2
