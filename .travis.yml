@@ -10,6 +10,8 @@ python:
     - pypy3
 addons:
     firefox: "31.0"
+before_install:
+    - pip install -U pip
 install: 
     - pip install -r requirements.txt
     - pip install . 
