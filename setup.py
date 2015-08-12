@@ -3,25 +3,32 @@
 
 import setuptools
 import sys
-
-extra = {}
-try: 
+try:
     import versioneer
-    extra['version']=versioneer.get_version()
-    extra['cmdclass']=versioneer.get_cmdclass()
 except Exception:
     print "versioneer is mandatory, install it with 'pip install versioneer'"
     sys.exit(1)
 
-# 2to3 if python >= 3
+extra = {}
+setup_packages = ['nose>=1.0', 'versioneer>=0.15']
+install_packages = []
+
+# with python2
+if sys.version_info < (3,):
+    install_packages.append('telnetlib')
+
+# with python >= 3
 if sys.version_info >= (3,):
     extra['use_2to3'] = True
+    install_packages.append('telnetlib3')
+
 
 # Define setup
 # noinspection PyPep8,PyPep8
 setuptools.setup(
     name='funicular',
-    setup_requires=['nose>=1.0', 'versioneer>=0.15'],
+    setup_requires=,
+    install_requires=install_packages,
     package_dir={'': 'src'},
     packages=setuptools.find_packages('src'),
     url='',
@@ -29,5 +36,7 @@ setuptools.setup(
     author='Fabien ZARIFIAN',
     author_email='fabien.zarifian@nuevolia.fr',
     description='Browser automation backend made easy !',
+    version=versioneer.get_version()
+    cmdclass=versioneer.get_cmdclass()
     **extra
 )

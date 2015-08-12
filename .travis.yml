@@ -3,14 +3,16 @@ python:
     - 2.6
     - 2.7
     - pypy
-#    - 3.2
-#    - 3.3
-#    - 3.4
-#    - nightly
-#    - pypy3
+    - 3.2
+    - 3.3
+    - 3.4
+    - nightly
+    - pypy3
 addons:
     firefox: "31.0"
 install: 
-    - pip install -r requirements.txt
-    - pip install . 
-script: nosetests
+    - python setup.py develop
+    - python setup.py install
+script:
+    - which firefox
+    - nosetests
