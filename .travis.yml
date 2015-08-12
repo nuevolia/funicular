@@ -8,6 +8,4 @@ python:
     - 3.4
     - nightly
     - pypy3
-install:
-    - python setup.py install
-    - nosetests
+install: python setup.py install && nosetests
