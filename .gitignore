@@ -1,0 +1,4 @@
+# funicular .gitignore
+*.pyc
+dist/*
+*.egg-info
