@@ -8,6 +8,8 @@ python:
     - 3.4
     - nightly
     - pypy3
+addons:
+    firefox: "31.0"
 install: 
     - pip install -r requirements.txt
     - pip install . 
