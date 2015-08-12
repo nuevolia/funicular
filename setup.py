@@ -10,7 +10,7 @@ except Exception:
     sys.exit(1)
 
 extra = {}
-setup_packages = ['nose>=1.0', 'versioneer>=0.15']
+setup_packages = ['nose>=1.0', 'versioneer>=0.15', 'sphinx', 'sphinx-autobuild']
 install_packages = []
 
 # with python2
@@ -27,7 +27,7 @@ if sys.version_info >= (3,):
 # noinspection PyPep8,PyPep8
 setuptools.setup(
     name='funicular',
-    setup_requires=,
+    setup_requires=setup_packages,
     install_requires=install_packages,
     package_dir={'': 'src'},
     packages=setuptools.find_packages('src'),
@@ -36,7 +36,7 @@ setuptools.setup(
     author='Fabien ZARIFIAN',
     author_email='fabien.zarifian@nuevolia.fr',
     description='Browser automation backend made easy !',
-    version=versioneer.get_version()
-    cmdclass=versioneer.get_cmdclass()
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     **extra
 )
