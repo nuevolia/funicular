@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# funicular.interfaces - Define interfaces on this package
+# funicular.browsers.interfaces - Define interfaces on this package
 #
 
 
-class IFunicularBase(object):
-    pass
+from funicular.interfaces import IFunicularBase
 
 
 class IFunicularBrowser(IFunicularBase):
