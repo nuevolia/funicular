@@ -21,5 +21,6 @@ install:
   - python setup.py install
 
 script:
+  - which Xvfb
   - which firefox
   - nosetests
