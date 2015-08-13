@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import setuptools
@@ -10,7 +10,7 @@ except Exception:
     sys.exit(1)
 
 extra = {}
-setup_packages = ['nose>=1.0', 'versioneer>=0.15']
+setup_packages = ['nose>=1.0']
 install_packages = []
 
 # with python2
@@ -21,7 +21,6 @@ if sys.version_info < (3,):
 if sys.version_info >= (3,):
     extra['use_2to3'] = True
     install_packages.append('telnetlib3')
-
 
 # Define setup
 # noinspection PyPep8,PyPep8
@@ -35,8 +34,7 @@ setuptools.setup(
     license='MIT',
     author='Fabien ZARIFIAN',
     author_email='fabien.zarifian@nuevolia.fr',
-    description='Browser automation backend made easy !',
+    description='Browser automation made easy !',
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
-    **extra
 )

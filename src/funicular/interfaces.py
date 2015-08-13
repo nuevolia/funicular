@@ -1,33 +1,34 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-""""
-funicular.interfaces - Define interfaces on this package
-"""
+#
+# funicular.interfaces - Define interfaces on this package
+#
 
 
-class IBase(class):
+class IFunicularBase(object):
     pass
 
 
-class IBrowser(IBase):
+class IFunicularBrowser(IFunicularBase):
     pass
 
 
-class IBrowserProfiles(IBase):
+class IFunicularBrowserProfiles(IFunicularBase):
     pass
 
 
-class IBrowserProfile(IBase):
+class IFunicularBrowserProfile(IFunicularBase):
     pass
 
 
-class IBrowserExtensions(IBase):
+class IFunicularBrowserExtensions(IFunicularBase):
     pass
 
 
-class IBrowserExtension(IBase):
+class IFunicularBrowserExtension(IFunicularBase):
     pass
 
 
-class IBrowserConnector(IBase):
+class IFunicularBrowserConnector(IFunicularBase):
     pass
+
