@@ -15,13 +15,11 @@ install_packages = []
 
 # with python2
 if sys.version_info < (3,):
-    pass
+    extra['use_2to3'] = False
 
 # with python >= 3
 if sys.version_info >= (3,):
     extra['use_2to3'] = True
-    install_packages.append('versioneer')
-    install_packages.append('telnetlib3')
 
 # Define setup
 # noinspection PyPep8,PyPep8
@@ -38,4 +36,5 @@ setuptools.setup(
     description='Browser automation made easy !',
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
+    use_2to3=extra['use_2to3']
 )
