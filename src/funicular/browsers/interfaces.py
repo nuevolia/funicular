@@ -25,5 +25,15 @@ class IFunicularBrowserExtension(IFunicularBase):
 
 
 class IFunicularBrowserConnector(IFunicularBase):
-    pass
+    def connect(self):
+        raise NotImplemented("connect must be defined")
 
+
+    def disconnect(self):
+        raise NotImplemented("disconnect must be defined")
+
+
+    def __del__(self):
+        if self._connector:
+            logger.debug('%s : disconnect' % (str(self),))
+            self.disconnect()

@@ -3,60 +3,55 @@
 #
 # funicular.interfaces.browsers.firefox.connector - Define Firefox connector
 #
-
+from funicular.browsers.interfaces import IFunicularBrowserConnector
 import telnetlib
 import re
 
-from funicular.browsers.interfaces import IFunicularBrowserConnector
-
 
 class FirefoxConnector(IFunicularBrowserConnector):
-    def __init__(self, hostname='localhost', port=4242, timeout=5, logger=logging.getLogger(__name__)):
+    def __init__(self, hostname='localhost', port=4242, timeout=5, logger=logger):
         self.hostname = hostname
         self.port = port
         self.timeout = timeout
-        self.logger = logger
-        self.instance_name = b'repl'
+        self._logger = logger or logging.getLogger(__name__)
+        self._instance_name = b'repl'
         self._record_separator = b'\r\n'
-        self._telnet = telnetlib.Telnet()
+        self._connector = telnetlib.Telnet()
+        self._rx_prompt = br'(repl\d+)>'
 
     def connect(self):
-        self._telnet.open(self.hostname, self.port, self.timeout)
-        motd = self._telnet.read_until(self._get_prompt(), 1)
+        self._connector.open(self.hostname, self.port, self.timeout)
+        motd = self._connector.read_until(self._get_prompt(), 1)
         if not motd.endswith(self._get_prompt()):
-            match = re.search(br'(repl\d+)>', motd)
+            match = re.search(self._rx_prompt, motd)
             if match:
-                self.logger.debug('instance = %s' % (match.group(1),))
-                self.instance_name = match.group(1)
+                self._logger.debug('instance = %s' % (match.group(1),))
+                self._instance_name = match.group(1)
 
     def disconnect(self):
-        self.execute('%s.close();' % (self.instance_name,), get_response=False)
-        self._telnet.close()
+        self.execute('%s.close();' % (self._instance_name,), get_response=False)
+        self._connector.close()
         delattr(self, '_telnet')
 
     def execute(self, command, timeout=5, get_response=True):
-        self.logger.debug('%s' % (command,))
-        self._telnet.write('%s%s' % (command, self._record_separator))
+        self._logger.debug('%s' % (command,))
+        self._connector.write('%s%s' % (command, self._record_separator))
         if get_response:
-            result = self._telnet.read_until(self._get_prompt(), timeout)
+            result = self._connector.read_until(self._get_prompt(), timeout)
             result = result \
                 .replace(self._get_prompt(), '') \
                 .rstrip()
-            self.logger.debug('result : %s' % (result,))
+            self._logger.debug('result : %s' % (result,))
         else:
             result = 'done'
         return result
 
     def _get_prompt(self):
-        return b'%s>' % (self.instance_name,)
+        return b'%s>' % (self._instance_name,)
 
     def __str__(self):
-        return '<%s: hostname=%s, port=%s, instance=%s>' % (type(self), self.hostname, self.port, self.instance_name)
+        return '<%s: hostname=%s, port=%s, instance=%s>' % (type(self), self.hostname, self.port, self._instance_name)
 
-    def __del__(self):
-        if self._telnet:
-            logger.debug('close telnet')
-            self.disconnect()
 
 
 if __name__ == '__main__':
