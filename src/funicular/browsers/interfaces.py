@@ -8,10 +8,6 @@
 from funicular.interfaces import IFunicularBase
 
 
-class IFunicularBrowser(IFunicularBase):
-    pass
-
-
 class IFunicularBrowserProfiles(IFunicularBase):
     pass
 

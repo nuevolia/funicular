@@ -5,8 +5,6 @@
 #
 
 import telnetlib
-import argparse
-import logging
 import re
 
 from funicular.browsers.interfaces import IFunicularBrowserConnector
@@ -63,24 +61,3 @@ class FirefoxConnector(IFunicularBrowserConnector):
 
 if __name__ == '__main__':
 
-    # Configuration des paramètres
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-d", "--debug", help="debug mode", action="store_true")
-    parser.add_argument("-u", "--load", help="url to load", default="http://www.google.fr")
-    parser.add_argument("-p", "--png", help="png to save", default="out.png")
-    parser.add_argument("-t", "--timeout", help="timeout in seconds", default=5)
-
-    # Récupération des paramètres
-    args = parser.parse_args()
-
-    # Initialisation du logger
-    if args.debug:
-        logging.basicConfig(level=logging.DEBUG)
-    else:
-        logging.basicConfig(level=logging.WARNING)
-    logger = logging.getLogger(__name__)
-
-    connector = FirefoxConnector(timeout=10, logger=logger)
-    connector.connect()
-    connector.execute('%s.look();' % (connector.instance_name,))
-    connector = None

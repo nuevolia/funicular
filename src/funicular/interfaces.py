@@ -8,3 +8,6 @@
 class IFunicularBase(object):
     pass
 
+
+class IFunicularBrowser(IFunicularBase):
+    pass
