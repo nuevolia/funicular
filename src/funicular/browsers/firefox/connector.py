@@ -4,11 +4,12 @@
 # funicular.interfaces.browsers.firefox.connector - Define Firefox connector
 #
 
-from funicular.interfaces import IFunicularBrowserConnector
 import telnetlib
 import argparse
 import logging
 import re
+
+from funicular.browsers.interfaces import IFunicularBrowserConnector
 
 
 class FirefoxConnector(IFunicularBrowserConnector):

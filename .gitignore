@@ -1,4 +1,5 @@
 # funicular git ignore list
-*.pyc
+.idea/*
 dist/*
 *.egg-info
+*.pyc
