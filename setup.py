@@ -29,7 +29,7 @@ setuptools.setup(
     install_requires=install_packages,
     package_dir={'': 'src'},
     packages=setuptools.find_packages('src'),
-    url='https://readthedocs.org/projects/funicular/',
+    url='http://funicular.readthedocs.org/',
     license='MIT',
     author='Fabien ZARIFIAN',
     author_email='fabien.zarifian@nuevolia.fr',
