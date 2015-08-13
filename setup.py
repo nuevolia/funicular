@@ -15,11 +15,12 @@ install_packages = []
 
 # with python2
 if sys.version_info < (3,):
-    install_packages.append('telnetlib')
+    pass
 
 # with python >= 3
 if sys.version_info >= (3,):
     extra['use_2to3'] = True
+    install_packages.append('versioneer')
     install_packages.append('telnetlib3')
 
 # Define setup
