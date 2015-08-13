@@ -10,7 +10,7 @@ except Exception as e:
     sys.exit(1)
 
 extra = {}
-setup_packages = ['nose>=1.0', 'pydoc']
+setup_packages = ['nose>=1.0', 'pydocs']
 install_packages = []
 
 # with python2
