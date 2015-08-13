@@ -5,8 +5,8 @@ import setuptools
 import sys
 try:
     import versioneer
-except Exception:
-    print "versioneer is mandatory, install it with 'pip install versioneer'"
+except Exception as e:
+    print("versioneer is mandatory, install it with 'pip install versioneer':\n" % (e.message,))
     sys.exit(1)
 
 extra = {}
